@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Friend
+  - Floor
   layers:
   - Default
   - TransparentFX

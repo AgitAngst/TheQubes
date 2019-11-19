@@ -152,9 +152,12 @@ MonoBehaviour:
   timer: 2
   animationSpeed: 0.2
   cubesCountX: 4
-  cubesCountZ: 3
-  girdSpacingOffset: 1.2
+  cubesCountZ: 10
+  cubesFloorCountZ: 15
+  girdSpacingOffset: 1.025
   cubeToSpawn: {fileID: 3409711118385028019, guid: 277df9ef7f2307f4887de201b683b7c1,
+    type: 3}
+  floorCube: {fileID: 2615444196769261013, guid: 4773ae69041daac4c93db89709d432b2,
     type: 3}
   grdOrigin: {x: 0, y: 0, z: 0}
 --- !u!4 &291570809

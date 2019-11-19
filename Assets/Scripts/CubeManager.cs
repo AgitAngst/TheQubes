@@ -11,9 +11,13 @@ public class CubeManager : MonoBehaviour {
 
     public int cubesCountX = 10;
     public int cubesCountZ = 10;
+    public int cubesFloorCountZ = 15;
+
     public float girdSpacingOffset = 1f;
 
     public GameObject cubeToSpawn;
+    public GameObject floorCube;
+
     GameObject tmpSpawn;
     Vector3 pos;
     public Vector3 grdOrigin = Vector3.zero;
@@ -44,17 +48,33 @@ public class CubeManager : MonoBehaviour {
     }
 
     public void GenerateCubes () {
+        GenerateEnemyCubes ();
+        GenerateFloorCubes();
+    }
 
+    void GenerateEnemyCubes () {
         for (int x = 0; x < cubesCountX; x++) {
             for (int z = 0; z < cubesCountZ; z++) {
-                Vector3 spawnPosition = new Vector3 (x * girdSpacingOffset, 1, z * girdSpacingOffset) + grdOrigin;
-                SpawnCubes(spawnPosition,Quaternion.identity);
+                Vector3 spawnPosition = new Vector3 (x * girdSpacingOffset, 0, z * girdSpacingOffset) + grdOrigin;
+                SpawnCubes (spawnPosition, Quaternion.identity);
             }
         }
     }
 
-    void SpawnCubes(Vector3 positionToSpawn, Quaternion rotationToSpawn)
-    {
-        GameObject clone = Instantiate(cubeToSpawn, positionToSpawn,rotationToSpawn);
+    void GenerateFloorCubes () {
+        for (int x = 0; x < cubesCountX; x++) {
+            for (int z = 0; z < cubesFloorCountZ; z++) {
+                Vector3 spawnPosition = new Vector3 (x * girdSpacingOffset, -1, z * girdSpacingOffset) + grdOrigin;
+                SpawnFloorCubes (spawnPosition, Quaternion.identity);
+            }
+        }
+    }
+
+    void SpawnCubes (Vector3 positionToSpawn, Quaternion rotationToSpawn) {
+        GameObject clone = Instantiate (cubeToSpawn, positionToSpawn, rotationToSpawn);
+    }
+    void SpawnFloorCubes (Vector3 positionToSpawn, Quaternion rotationToSpawn) {
+        GameObject clone = Instantiate (floorCube, positionToSpawn, rotationToSpawn);
+
     }
 }
