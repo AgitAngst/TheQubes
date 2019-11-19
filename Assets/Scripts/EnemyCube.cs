@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCube : CubeManager
-{
+public class EnemyCube : GameManager {
     // Start is called before the first frame update
     void Start () {
         gameObject.tag = "Enemy";
@@ -14,11 +13,10 @@ public class EnemyCube : CubeManager
         MoveCube ();
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Finish"))
-        {
-            GetComponent<Rigidbody>().isKinematic = false;
-            Destroy(gameObject,1.5f);
+    private void OnTriggerEnter (Collider other) {
+        if (other.CompareTag ("Finish")) {
+            GetComponent<Rigidbody> ().isKinematic = false;
+            Destroy (gameObject, 1.5f);
         }
     }
 }
