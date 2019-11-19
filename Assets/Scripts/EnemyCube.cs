@@ -13,4 +13,12 @@ public class EnemyCube : CubeManager
     void Update () {
         MoveCube ();
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Finish"))
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+            Destroy(gameObject,1.5f);
+        }
+    }
 }
