@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public Transform raycastShooter;
     int layerMask = 1 << 8;
     GameManager gameManager;
+    GameObject cloned;
+    int locatorSpawnCount = 0;
     void Start()
     {
         playerSpawn = Instantiate(player, spawnPosition);
@@ -64,8 +66,17 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(start, direction, out hit))
         {
             //hit.collider.gameObject.SetActive(false);
-            Instantiate(gameManager.locatorToSpawn, new Vector3(hit.collider.gameObject.transform.position.x, hit.collider.gameObject.transform.position.y + 1, hit.collider.gameObject.transform.position.z), Quaternion.identity);
+            
+            if (locatorSpawnCount >= 1)
+            {
+                Destroy(cloned);
+                locatorSpawnCount = 0;
+                
+            }
+            cloned = Instantiate(gameManager.locatorToSpawn, new Vector3(hit.collider.gameObject.transform.position.x, hit.collider.gameObject.transform.position.y + 1, hit.collider.gameObject.transform.position.z), Quaternion.identity);
             Debug.Log(hit.collider.name);
+            locatorSpawnCount++;
+
         }
     }
 }
