@@ -66,17 +66,69 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(start, direction, out hit))
         {
             //hit.collider.gameObject.SetActive(false);
-            
+
             if (locatorSpawnCount >= 1)
             {
                 Destroy(cloned);
                 locatorSpawnCount = 0;
-                
+
             }
             cloned = Instantiate(gameManager.locatorToSpawn, new Vector3(hit.collider.gameObject.transform.position.x, hit.collider.gameObject.transform.position.y + 1, hit.collider.gameObject.transform.position.z), Quaternion.identity);
+
             Debug.Log(hit.collider.name);
             locatorSpawnCount++;
 
         }
+
+        RaycastSideHit(new Vector3(-0.5f, 0, 0), new Vector3(-0.5f,0,0));
+        RaycastSideHit(new Vector3(0.5f, 0, 0), new Vector3(0.5f, 0, 0));
+        RaycastSideHit(new Vector3(0, 0, 0.5f), new Vector3(0, 0, 0.5f));
+        RaycastSideHit(new Vector3(0, 0, -0.5f), new Vector3(0, 0, -0.5f));
+
+
+
     }
+
+    private void RaycastSideHit(Vector3 side, Vector3 lenght)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(cloned.transform.position.x + side.x, cloned.transform.position.y + side.y, cloned.transform.position.z + side.z), lenght, out hit))
+        {
+            Debug.DrawRay(new Vector3(cloned.transform.position.x + side.x, cloned.transform.position.y + side.y, cloned.transform.position.z + side.z), lenght, Color.green, 5f);
+           
+            if (hit.collider.gameObject.CompareTag("Enemy") || hit.collider.gameObject.CompareTag("Friend"))
+            {
+                hit.collider.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    //Debug.DrawRay(new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), new Vector3(-0.5f, 0, 0), Color.green, 5f);
+    //        Debug.DrawRay(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), new Vector3(0.5f, 0, 0), Color.green, 5f);
+    //      Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.5f), new Vector3(0, 0, 0.5f), Color.green, 5f);
+    //    Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.5f), new Vector3(0, 0, -0.5f), Color.green, 5f);
+
+    /* RaycastHit cubeSide2Hit;
+        if (Physics.Raycast(new Vector3(cloned.transform.position.x - 0.5f, cloned.transform.position.y, cloned.transform.position.z), new Vector3(0.5f, 0, 0), out cubeSide2Hit))
+        {
+            Debug.DrawRay(new Vector3(cloned.transform.position.x - 0.5f, cloned.transform.position.y, cloned.transform.position.z), new Vector3(0.5f, 0, 0), Color.green, 5f);
+            Debug.Log("Left:" + cubeSide2Hit.collider.name);
+            cubeSide2Hit.collider.gameObject.SetActive(false);
+        }
+
+        RaycastHit cubeSide3Hit;
+        if (Physics.Raycast(new Vector3(cloned.transform.position.x - 0.5f, cloned.transform.position.y, cloned.transform.position.z), new Vector3(0, 0, 0.5f), out cubeSide3Hit))
+        {
+            Debug.DrawRay(new Vector3(cloned.transform.position.x - 0.5f, cloned.transform.position.y, cloned.transform.position.z), new Vector3(0, 0, 0.5f), Color.green, 5f);
+            Debug.Log("Left:" + cubeSide3Hit.collider.name);
+            cubeSide3Hit.collider.gameObject.SetActive(false);
+        }
+
+        RaycastHit cubeSide4Hit;
+        if (Physics.Raycast(new Vector3(cloned.transform.position.x - 0.5f, cloned.transform.position.y, cloned.transform.position.z), new Vector3(0, 0, -0.5f), out cubeSide4Hit))
+        {
+            Debug.DrawRay(new Vector3(cloned.transform.position.x - 0.5f, cloned.transform.position.y, cloned.transform.position.z), new Vector3(0, 0, -0.5f), Color.green, 5f);
+            Debug.Log("Left:" + cubeSide4Hit.collider.name);
+            cubeSide4Hit.collider.gameObject.SetActive(false);
+        }*/
 }
