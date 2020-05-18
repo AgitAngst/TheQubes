@@ -18,5 +18,10 @@ public class FriendlyCube : GameManager {
             GetComponent<Rigidbody> ().isKinematic = false;
             Destroy (gameObject, 1.5f);
         }
+
+        if (other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

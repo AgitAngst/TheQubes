@@ -18,5 +18,9 @@ public class EnemyCube : GameManager {
             GetComponent<Rigidbody> ().isKinematic = false;
             Destroy (gameObject, 1.5f);
         }
+        if (other.CompareTag("Player"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

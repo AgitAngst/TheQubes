@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
+
+
 public enum CubeColor {
     Red = 0,
     Green = 1,
@@ -25,8 +27,11 @@ public class GameManager : MonoBehaviour {
     public GameObject cubeToSpawnRed;
     public GameObject cubeToSpawnGreen;
     public GameObject cubeToSpawnBlack;
+    public GameObject locatorToSpawn;
+
 
     public GameObject floorCube;
+
 
     GameObject tmpSpawn;
     Vector3 pos;
@@ -108,6 +113,7 @@ public class GameManager : MonoBehaviour {
     }
     void SpawnFloorCubes (Vector3 positionToSpawn, Quaternion rotationToSpawn) {
         GameObject clone = Instantiate (floorCube, positionToSpawn, rotationToSpawn);
-
     }
+
+    
 }
