@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour {
     GameManager gameManager;
-    void Start () {
-        gameManager = GameObject.Find ("GameManager").GetComponent<GameManager> ();
+    void Awake () {
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update () {
 
     }
-    public void N () {
-        gameManager.MoveCube ();
+    public void Move(Transform cube) {
+        gameManager.MoveCube (cube);
     }
 
 }

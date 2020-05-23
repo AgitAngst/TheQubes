@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FriendlyCube : GameManager {
+public class FriendlyCube : Cube {
     // Start is called before the first frame update
     void Start () {
         gameObject.tag = "Friend";
@@ -10,7 +10,7 @@ public class FriendlyCube : GameManager {
 
     // Update is called once per frame
     void Update () {
-        MoveCube ();
+        Move (transform);
     }
 
     private void OnTriggerEnter (Collider other) {

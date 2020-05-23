@@ -41,30 +41,27 @@ public class GameManager : MonoBehaviour {
     void Start () {
         timerCounter = timer;
         pos = transform.position;
-        GenerateCubes ();
+        GenerateFloorCubes();
+
     }
     private void Update () {
         if (Input.GetKeyDown (KeyCode.Space)) {
-            GenerateCubes ();
+            GenerateEnemyCubes();
         }
-        MoveCube ();
     }
-    public void MoveCube () {
+    public void MoveCube (Transform cube) {
         timerCounter -= Time.deltaTime;
         if (timerCounter <= 0f) {
-            MoveAndRotate ();
+            MoveAndRotate (cube);
             timerCounter = timer;
         }
     }
-    public void MoveAndRotate () {
-        transform.DORotate (new Vector3 (90, 0, 0), animationSpeed, RotateMode.LocalAxisAdd);
-        var tmp = transform.position.z + 1;
-        transform.DOLocalMoveZ (tmp, animationSpeed);
+    public void MoveAndRotate (Transform cube) {
+        cube.DORotate (new Vector3 (90, 0, 0), animationSpeed, RotateMode.LocalAxisAdd);
+        var tmp = cube.position.z + 1;
+        cube.DOLocalMoveZ (tmp, animationSpeed);
     }
-    public void GenerateCubes () {
-        GenerateEnemyCubes ();
-        GenerateFloorCubes ();
-    }
+   
 
     void GenerateEnemyCubes () {
         bool spawnedThisLine = false;
